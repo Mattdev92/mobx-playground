@@ -1,6 +1,6 @@
 import React from "react";
 import { MyContext, newStore } from "./store";
-import MyComponent from "./myComponent";
+import MyComponent from "./myComponent/myComponent";
 
 function App() {
   return (

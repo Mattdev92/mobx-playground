@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import { observer } from "mobx-react";
-import { MyContext } from "./store";
+import { MyContext } from "../store";
 
 const MyComponent = observer(() => {
   const mobxStore = useContext(MyContext);
   const [item, setItem] = useState("");
   return (
     <>
-      <h1>My Item list</h1>
+      <h1 data-testid='mylist'>My Item list</h1>
       <ul>
         {mobxStore.todoItems.map((elem, i) => (
           <div key={`${i},${elem}`}>
