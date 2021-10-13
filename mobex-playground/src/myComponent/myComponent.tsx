@@ -14,7 +14,7 @@ const MyComponent = observer(() => {
             <li>
               Hello from MyCoponent item number {i} which is {elem.name}
             </li>
-            <button onClick={() => mobxStore.deleteItem(elem.name)}>
+            <button onClick={() => mobxStore.deleteItem(elem.name)} data-testid={`delete${elem.name}`}>
               delete this item
             </button>
           </div>

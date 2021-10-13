@@ -4,23 +4,29 @@ import MyComponent from "./myComponent";
 import { MyContext, newStore } from "../store";
 
 describe("my first group of test", () => {
-  it("renders my Component correctly", () => {
-    const { getByTestId } = render(
+  beforeEach(() => {
+    render(
       <MyContext.Provider value={newStore}>
         <MyComponent />
       </MyContext.Provider>
     );
-    expect(getByTestId("mylist")).toHaveTextContent("My Item");
+  });
+  it("renders my Component correctly", () => {
+    expect(screen.getByTestId("mylist")).toHaveTextContent("My Item");
   });
   it("add new item works correctly", () => {
-    const { getByTestId } = render(
-      <MyContext.Provider value={newStore}>
-        <MyComponent />
-      </MyContext.Provider>
-    );
-    const input = getByTestId("inputt");
+    const input = screen.getByTestId("inputt");
     fireEvent.change(input, { target: { value: "Mati" } });
     fireEvent.click(screen.getByTestId("button"));
-    expect(getByTestId("Mati")).toBeDefined();
+    expect(screen.getByTestId("Mati")).toBeDefined();
+  });
+  it("delete works correctly", () => {
+    const input = screen.getByTestId("inputt");
+    fireEvent.change(input, { target: { value: "Kamil" } });
+    fireEvent.click(screen.getByTestId("button"));
+    expect(screen.getByTestId("Kamil")).toBeDefined();
+    fireEvent.click(screen.getByTestId("deleteMati"));
+    const Mat = screen.queryByText("Mati");
+    expect(Mat).toBe(null);
   });
 });
