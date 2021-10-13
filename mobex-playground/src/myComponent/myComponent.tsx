@@ -7,10 +7,10 @@ const MyComponent = observer(() => {
   const [item, setItem] = useState("");
   return (
     <>
-      <h1 data-testid='mylist'>My Item list</h1>
+      <h1 data-testid="mylist">My Item list</h1>
       <ul>
         {mobxStore.todoItems.map((elem, i) => (
-          <div key={`${i},${elem}`}>
+          <div key={`${i},${elem}`} data-testid={elem.name}>
             <li>
               Hello from MyCoponent item number {i} which is {elem.name}
             </li>
@@ -31,12 +31,14 @@ const MyComponent = observer(() => {
             setItem("");
           }
         }}
+        data-testid="inputt"
       />
       <button
         onClick={() => {
           mobxStore.addItems(item);
           setItem("");
         }}
+        data-testid="button"
       >
         Add me to the list
       </button>
